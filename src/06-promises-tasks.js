@@ -20,17 +20,26 @@
  *    const p1 = willYouMarryMe(true);
  *    p1.then(answer => console.log(answer)) // 'Hooray!!! She said "Yes"!'
  *
- *    const p2 = willYouMarryMe(false);
- *    p2.then(answer => console.log(answer)) // 'Oh no, she said "No".';
+  *    const p2 = willYouMarryMe(false);
+  *    p2.then(answer => console.log(answer)) // 'Oh no, she said "No".';
  *
  *    const p3 = willYouMarryMe();
  *    p3.then(answer => console.log(answer))
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
-}
+const willYouMarryMe = (isPositiveAnswer) => {
+  const promise = new Promise((resolve, reject) => {
+    if (isPositiveAnswer === true) {
+      resolve('Hooray!!! She said "Yes"!');
+    }
+    if (isPositiveAnswer === false) {
+      resolve('Oh no, she said "No".');
+    }
+    reject(new Error('Wrong parameter is passed! Ask her again.'));
+  });
+  return promise;
+};
 
 
 /**
@@ -48,9 +57,7 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
-}
+const processAllPromises = (array) => Promise.all(array);
 
 /**
  * Return Promise object that should be resolved with value received from
@@ -71,9 +78,7 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
-}
+const getFastestPromise = (array) => Promise.race(array);
 
 /**
  * Return Promise object that should be resolved with value that is
